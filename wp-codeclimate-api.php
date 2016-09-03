@@ -66,4 +66,25 @@ class CodeClimateAPI {
 	 */
 	protected function refresh_repo_branches() {
 	}
+
+	/**
+	 * response_code_msg function.
+	 *
+	 * @access public
+	 * @param string $code (default: '')
+	 * @return void
+	 */
+	public function response_code_msg( $code = '' ) {
+
+		switch ( $code ) {
+			case 200:
+				$msg = __( 'Ok.','text-domain' );
+				break;
+			default:
+				$msg = __( 'Response code unknown.', 'text-domain' );
+				break;
+		}
+
+		return $msg;
+	}
 }
