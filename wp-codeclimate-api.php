@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class CodeClimateAPI {
 	
-		/**
+	/**
 	 * [__construct description]
 	 * @param [type] $api_key [description]
 	 */
