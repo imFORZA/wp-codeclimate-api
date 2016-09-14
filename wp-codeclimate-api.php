@@ -30,10 +30,13 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 */
 		private $base_uri = 'https://codeclimate.com/api/';
 
+
 		/**
-		 * [__construct description]
+		 * __construct function.
 		 *
-		 * @param [type] $api_key [description]
+		 * @access public
+		 * @param mixed $api_token API Token.
+		 * @return void
 		 */
 		public function __construct( $api_token ) {
 
@@ -46,7 +49,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 *
 		 * @access private
 		 * @param mixed $request Request URL.
-		 * @return void
+		 * @return $body Body.
 		 */
 		private function fetch( $request ) {
 
@@ -69,7 +72,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 * Get list of all repos.
 		 *
 		 * @access protected
-		 * @return void
+		 * @return $request Request.
 		 */
 		public function get_repos() {
 
@@ -84,7 +87,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 *
 		 * @access protected
 		 * @param mixed $repo_id Repo ID.
-		 * @return void
+		 * @return $request Request.
 		 */
 		public function get_repo( $repo_id ) {
 
@@ -101,7 +104,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 *
 		 * @access protected
 		 * @param mixed $repo_id Repo ID.
-		 * @return void
+		 * @return $request Request.
 		 */
 		public function refresh_repo( $repo_id ) {
 
@@ -120,7 +123,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 * @access protected
 		 * @param mixed $repo_id Repo ID.
 		 * @param mixed $branch_name Branch Name.
-		 * @return void
+		 * @return $request Request.
 		 */
 		public function get_repo_branches( $repo_id, $branch_name ) {
 
@@ -138,7 +141,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 * @access protected
 		 * @param mixed $repo_id Repo ID.
 		 * @param mixed $branch_name Branch Name.
-		 * @return void
+		 * @return $request Request.
 		 */
 		public function refresh_repo_branches( $repo_id, $branch_name ) {
 
@@ -150,24 +153,25 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 
 		}
 
+
 		/**
-		 * response_code_msg function.
+		 * Response Codes.
 		 *
 		 * @access public
-		 * @param string $code (default: '')
-		 * @return void
+		 * @param string $code (default: '') Response Code.
+		 * @return $msg Response Code Message.
 		 */
 		public function response_code_msg( $code = '' ) {
 
 			switch ( $code ) {
-			case 200:
-				$msg = __( 'Ok.', 'text-domain' );
+				case 200:
+					$msg = __( 'Ok.', 'text-domain' );
 				break;
-			case 404:
-				$msg = __( 'Incorrect Request, Not Found.', 'text-domain' );
+				case 404:
+					$msg = __( 'Incorrect Request, Not Found.', 'text-domain' );
 				break;
-			default:
-				$msg = __( 'Response code unknown.', 'text-domain' );
+				default:
+					$msg = __( 'Response code unknown.', 'text-domain' );
 				break;
 			}
 
