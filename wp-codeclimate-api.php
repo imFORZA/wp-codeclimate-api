@@ -91,9 +91,11 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 */
 		public function get_repo( $repo_id ) {
 
-			if ( ! empty( $repo_id ) ) {
-				$request = $this->base_uri . '/repos/' . $repo_id;
+			if ( empty( $repo_id ) ) {
+				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'text-domain' ) );
 			}
+
+			$request = $this->base_uri . '/repos/' . $repo_id;
 
 			return $this->fetch( $request );
 		}
@@ -108,9 +110,11 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 */
 		public function refresh_repo( $repo_id ) {
 
-			if ( ! empty( $repo_id ) ) {
-				$request = $this->base_uri . '/repos/' . $repo_id . 'refresh';
+			if ( empty( $repo_id ) ) {
+				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'text-domain' ) );
 			}
+
+			$request = $this->base_uri . '/repos/' . $repo_id . 'refresh';
 
 			return $this->fetch( $request );
 
@@ -127,9 +131,11 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 */
 		public function get_repo_branches( $repo_id, $branch_name ) {
 
-			if ( ! empty( $repo_id ) && ! empty( $branch_name ) ) {
-				$request = $this->base_uri . '/repos/' . $repo_id . 'branches/' . $branch_name;
+			if ( empty( $repo_id ) || empty( $branch_name ) ) {
+				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'text-domain' ) );
 			}
+
+			$request = $this->base_uri . '/repos/' . $repo_id . 'branches/' . $branch_name;
 
 			return $this->fetch( $request );
 		}
@@ -145,9 +151,11 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		 */
 		public function refresh_repo_branches( $repo_id, $branch_name ) {
 
-			if ( ! empty( $repo_id ) && ! empty( $branch_name ) ) {
-				$request = $this->base_uri . '/repos/' . $repo_id . 'branches/' . $branch_name . '/refresh';
+			if ( empty( $repo_id ) || empty( $branch_name ) ) {
+				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'text-domain' ) );
 			}
+
+			$request = $this->base_uri . '/repos/' . $repo_id . 'branches/' . $branch_name . '/refresh';
 
 			return $this->fetch( $request );
 
