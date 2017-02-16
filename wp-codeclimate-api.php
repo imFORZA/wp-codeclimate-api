@@ -80,6 +80,50 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		}
 
 		/**
+		 * get_user function.
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function get_user() {
+			$request = $this->base_uri . '/user';
+			return $this->fetch( $request );
+		}
+
+		/**
+		 * get_orgs function.
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function get_orgs() {
+			$request = $this->base_uri . '/orgs';
+			return $this->fetch( $request );
+		}
+
+		/**
+		 * create_org function.
+		 * https://docs.codeclimate.com/docs/api#section-post-orgs
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function create_org() {
+
+		}
+
+		/**
+		 * add_private_repo function.
+		 * https://docs.codeclimate.com/docs/api#section-post-orgsorg_idrepos
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function add_private_repo() {
+
+		}
+
+		/**
 		 * Get list of all repos.
 		 *
 		 * @access protected
