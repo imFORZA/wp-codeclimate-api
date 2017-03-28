@@ -11,6 +11,7 @@
 * Description: Perform API requests to CodeClimate in WordPress.
 * Author: WP API Libraries
 * Version: 1.0.0
+* Text Domain: wp-codeclimate-api
 * Author URI: https://wp-api-libraries.com
 * GitHub Plugin URI: https://github.com/wp-api-libraries/wp-codeclimate-api
 * GitHub Branch: master
@@ -70,7 +71,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 			$code = wp_remote_retrieve_response_code( $response );
 
 			if ( 200 !== $code ) {
-				return new WP_Error( 'response-error', sprintf( __( 'Server response code: %d', 'text-domain' ), $code ) );
+				return new WP_Error( 'response-error', sprintf( __( 'Server response code: %d', 'wp-codeclimate-api' ), $code ) );
 			}
 
 			$body = wp_remote_retrieve_body( $response );
@@ -80,7 +81,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		}
 
 		/**
-		 * get_user function.
+		 * Get User.
 		 *
 		 * @access public
 		 * @return void
@@ -91,7 +92,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		}
 
 		/**
-		 * get_orgs function.
+		 * Get Organizations.
 		 *
 		 * @access public
 		 * @return void
@@ -136,7 +137,6 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 
 		}
 
-
 		/**
 		 * Get Repo Details.
 		 *
@@ -147,14 +147,13 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		public function get_repo( $repo_id ) {
 
 			if ( empty( $repo_id ) ) {
-				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'text-domain' ) );
+				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'wp-codeclimate-api' ) );
 			}
 
 			$request = $this->base_uri . '/repos/' . $repo_id;
 
 			return $this->fetch( $request );
 		}
-
 
 		/**
 		 * Refresh Repo.
@@ -166,7 +165,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		public function refresh_repo( $repo_id ) {
 
 			if ( empty( $repo_id ) ) {
-				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'text-domain' ) );
+				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'wp-codeclimate-api' ) );
 			}
 
 			$request = $this->base_uri . '/repos/' . $repo_id . 'refresh';
@@ -174,7 +173,6 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 			return $this->fetch( $request );
 
 		}
-
 
 		/**
 		 * Get Repo Branches.
@@ -187,14 +185,13 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		public function get_repo_branches( $repo_id, $branch_name ) {
 
 			if ( empty( $repo_id ) || empty( $branch_name ) ) {
-				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'text-domain' ) );
+				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'wp-codeclimate-api' ) );
 			}
 
 			$request = $this->base_uri . '/repos/' . $repo_id . 'branches/' . $branch_name;
 
 			return $this->fetch( $request );
 		}
-
 
 		/**
 		 * Refresh Branch.
@@ -207,7 +204,7 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 		public function refresh_repo_branches( $repo_id, $branch_name ) {
 
 			if ( empty( $repo_id ) || empty( $branch_name ) ) {
-				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'text-domain' ) );
+				return new WP_Error( 'required-fields', __( 'Required fields are empty.', 'wp-codeclimate-api' ) );
 			}
 
 			$request = $this->base_uri . '/repos/' . $repo_id . 'branches/' . $branch_name . '/refresh';
@@ -228,13 +225,13 @@ if ( ! class_exists( 'CodeClimateAPI' ) ) {
 
 			switch ( $code ) {
 				case 200:
-					$msg = __( 'Ok.', 'text-domain' );
+					$msg = __( 'Ok.', 'wp-codeclimate-api' );
 				break;
 				case 404:
-					$msg = __( 'Incorrect Request, Not Found.', 'text-domain' );
+					$msg = __( 'Incorrect Request, Not Found.', 'wp-codeclimate-api' );
 				break;
 				default:
-					$msg = __( 'Response code unknown.', 'text-domain' );
+					$msg = __( 'Response code unknown.', 'wp-codeclimate-api' );
 				break;
 			}
 
